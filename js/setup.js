@@ -148,10 +148,9 @@ var polygon =  [
               48.853991495991124
             ]
           ]
-        ].addTo(map);
+        ].addTo(map). bindPopup("College Universitaire Sciences Po Paris");
 
 
-polygon.bindPopup("College Universitaire Sciences Po Paris");
 
 //// adding shapes to the map
 
