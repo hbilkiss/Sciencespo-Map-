@@ -151,6 +151,7 @@ var polygon =  [
         ].addTo(map);
 
 
+polygon.bindPopup("College Universitaire Sciences Po Paris");
 
 //// adding shapes to the map
 
