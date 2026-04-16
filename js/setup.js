@@ -161,9 +161,12 @@ var polygon =  [
               48.853991495991124
             ]
           ]
-        ],
-polygon.bindPopup("Sciences Po College Universitaire")
-]).addTo(map);
+        ]).addTo(map);
+
+polygon.bindPopup("I am a polygon.");
+
+// polygon.bindPopup("Sciences Po College Universitaire")
+// ]).addTo(map);
 
 // Add a marker
 L.marker([48.85505929226488, 2.32632017043754]).addTo(map). bindPopup("My favorite Cafe!: Cafe Noir")
