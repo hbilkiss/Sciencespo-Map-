@@ -168,4 +168,5 @@ var circle = L.circle([39.983219999796114, -75.15256557830536], {
 // ]).addTo(map);
 
 // Add a marker
+L.marker([48.85417442591539, 2.3283007287517545]).addTo(map). bindPopup("Sciences Po College Universitaire")
 L.marker([48.85505929226488, 2.32632017043754]).addTo(map). bindPopup("My favorite Cafe!: Cafe Noir")
