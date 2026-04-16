@@ -148,7 +148,7 @@ var polygon =  [
               48.853991495991124
             ]
           ]
-        ].addTo(map). 
+        ].addTo(map); 
 
 
 //// adding shapes to the map
