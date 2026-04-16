@@ -161,7 +161,7 @@ var polygon =  [
               48.853991495991124
             ]
           ]
-        ]).addTo(map);
+        ].addTo(map);
 
 polygon.bindPopup("I am a polygon.");
 
