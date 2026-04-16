@@ -3,10 +3,6 @@ var map = L.map('map', {
   zoom: 18,
 });
 
-<img src="images/Sciences-po-coat-of-arms.png" "style=width:60%"> 
-<h3> Mapping Sciences po!</h3>
-<p>This map highlights the Sciences Po College Universitaire and my favorite coffe shop during my semester abroad. </p>
-
 // Search Addresses
 L.Control.geocoder({
   defaultMarkGeocode: false
