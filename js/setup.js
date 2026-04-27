@@ -91,7 +91,6 @@ var baseMaps = {
 
 var overlayMaps = {
   "Sciences Po Polygon": sciencesPoPolygon,
-  "Study Area Circle": circle,
   "Sciences Po Marker": sciencesPoMarker,
   "Café Noir Marker": cafeMarker
 };
