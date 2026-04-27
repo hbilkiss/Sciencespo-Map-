@@ -12,19 +12,20 @@ L.Control.geocoder({
   })
   .addTo(map);
 
-map.locate({ setView: true, maxZoom: 18 });
+// OPTIONAL: this moves the map to your current physical location.
+// Comment it out if you want the map to stay centered on Sciences Po.
+// map.locate({ setView: true, maxZoom: 18 });
 
-map.on('locationfound', function(e) {
-  L.marker(e.latlng).addTo(map)
-    .bindPopup("You are here").openPopup();
-});
+// map.on('locationfound', function(e) {
+//   L.marker(e.latlng).addTo(map)
+//     .bindPopup("You are here").openPopup();
+// });
 
-
-//Scale bar
+// Scale bar
 L.control.scale().addTo(map);
 
 // --- Basemap options ---
-var Satellite = L.tileLayer(
+var EsriSat = L.tileLayer(
   'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
   { attribution: 'Tiles © Esri' }
 );
@@ -44,23 +45,16 @@ var StamenTerrain = L.tileLayer(
   { attribution: 'Map tiles by Stamen Design — Data © OpenStreetMap' }
 );
 
-
 var EsriTopo = L.tileLayer(
   'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
   { attribution: 'Tiles © Esri' }
 );
 
-var EsriSat = L.tileLayer(
-  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-  { attribution: 'Tiles © Esri' }
-);
-
 // Default basemap
-Satellite.addTo(map);
+EsriSat.addTo(map);
 
-// You can add or remove basemaps here. A button will appear top right of map to toggle.
 var baseMaps = {
-  "Satellite (Esri)": EsriSat,
+  "Satellite Esri": EsriSat,
   "CARTO Light": CartoLight,
   "CARTO Dark": CartoDark,
   "Stamen Terrain": StamenTerrain,
@@ -69,104 +63,40 @@ var baseMaps = {
 
 L.control.layers(baseMaps).addTo(map);
 
-var polygon =  [
-          [
-            [
-              2.3282223802136173,
-              48.853991495991124
-            ],
-            [
-              2.328834305613185,
-              48.85367977778469
-            ],
-            [
-              2.3288681448052557,
-              48.853690910611306
-            ],
-            [
-              2.3289160836616816,
-              48.85366678948421
-            ],
-            [
-              2.3289753022484945,
-              48.85374657470675
-            ],
-            [
-              2.3286735694482843,
-              48.85389315652864
-            ],
-            [
-              2.32871868837168,
-              48.85393768762995
-            ],
-            [
-              2.3288709647383143,
-              48.85409911254047
-            ],
-            [
-              2.328933003258186,
-              48.85408983526037
-            ],
-            [
-              2.329006321508416,
-              48.85417518616788
-            ],
-            [
-              2.328794826554997,
-              48.8542512596803
-            ],
-            [
-              2.328907623863415,
-              48.85432547763014
-            ],
-            [
-              2.3290599002300496,
-              48.854269814178394
-            ],
-            [
-              2.329107839086504,
-              48.85434032120679
-            ],
-            [
-              2.3289922218449988,
-              48.85437928557451
-            ],
-            [
-              2.3290993792882375,
-              48.854481334965755
-            ],
-            [
-              2.328955562719841,
-              48.8545444199396
-            ],
-            [
-              2.328625630591887,
-              48.85430135680818
-            ],
-            [
-              2.3282223802136173,
-              48.853991495991124
-            ]
-          ]
-        ].addTo(map); 
+// Style for GeoJSON building polygon
+var myStyle = {
+  fillColor: "#ff7800",
+  color: "#000",
+  weight: 2,
+  opacity: 1,
+  fillOpacity: 0.7
+};
 
+// Load Sciences Po polygon from tyler.js
+L.geoJSON(tyler, {
+  style: myStyle
+})
+  .bindPopup(function(layer) {
+    return layer.feature.properties.name;
+  })
+  .addTo(map);
 
-//// adding shapes to the map
+// Circle near Sciences Po
+var circle = L.circle([48.85405, 2.32865], {
+  color: 'red',
+  fillColor: '#f03',
+  fillOpacity: 0.5,
+  radius: 15
+}).addTo(map).bindPopup("Study area circle");
 
+// Marker: Sciences Po
+L.marker([48.85417442591539, 2.3283007287517545])
+  .addTo(map)
+  .bindPopup("Sciences Po College Universitaire");
 
-// Make a simple circle
-var circle = L.circle([39.983219999796114, -75.15256557830536], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 5
-}).addTo(map);
+// Marker: Café Noir
+L.marker([48.85505929226488, 2.32632017043754])
+  .addTo(map)
+  .bindPopup("My favorite cafe: Café Noir");
 
-
-
-// polygon.bindPopup("Sciences Po College Universitaire")
-// ]).addTo(map);
-
-// Add a marker
-L.marker([48.85417442591539, 2.3283007287517545]).addTo(map). bindPopup("Sciences Po College Universitaire").addTo(map)
-L.marker([48.85505929226488, 2.32632017043754]).addTo(map). bindPopup("My favorite Cafe!: Cafe Noir").addTo(map)
+console.log("Map loaded successfully!");
