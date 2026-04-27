@@ -71,16 +71,6 @@ map.fitBounds(sciencesPoPolygon.getBounds(), {
   padding: [30, 30]
 });
 
-// Circle near Sciences Po
-var circle = L.circle([48.85405, 2.32865], {
-  color: 'red',
-  fillColor: '#f03',
-  fillOpacity: 0.5,
-  radius: 15
-})
-.addTo(map)
-.bindPopup("Study area circle");
-
 // Marker: Sciences Po
 var sciencesPoMarker = L.marker([48.85417442591539, 2.3283007287517545])
 .addTo(map)
