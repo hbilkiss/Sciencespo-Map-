@@ -35,4 +35,4 @@ var tyler = {
       }
     }
   ]
-};
+};addtomap 
